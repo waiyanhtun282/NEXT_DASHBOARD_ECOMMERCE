@@ -2,7 +2,7 @@ import React from "react";
 import { navItems } from "./navItems";
 import SideBarItem from "./SideBarItem";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 export default function SideBar() {
   return (
