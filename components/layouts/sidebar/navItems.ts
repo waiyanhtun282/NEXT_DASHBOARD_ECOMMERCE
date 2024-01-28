@@ -20,7 +20,22 @@ export const navItems = [
     link: "/dashboard/brands",
   },
   {
+    id: 8,
+    name: "Discounts",
+    link: "/dashboard/discounts",
+  },
+  {
     id: 5,
+    name: "Orders",
+    link: "/dashboard/orders",
+  },
+  {
+    id: 6,
+    name: "Customers",
+    link: "/dashboard/customers",
+  },
+  {
+    id: 7,
     name: "Settings",
     link: "/dashboard/settings",
   },
