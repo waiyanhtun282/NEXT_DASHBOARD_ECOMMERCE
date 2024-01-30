@@ -22,3 +22,16 @@ export async function createBrands(formData: FormData) {
   revalidatePath(routes.brands.main);
   redirect(`${routes.brands.main}?status=success`);
 }
+
+
+export async function editBrands(id:string,formData:FormData) {
+  await prisma.brand.update({
+    where:{id},
+    data:schema.parse({
+      name:formData.get('name' || ""),
+      description:formData.get('description' || "")
+    })
+  }); 
+  revalidatePath(routes.brands.main);
+  redirect(routes.brands.main)
+}

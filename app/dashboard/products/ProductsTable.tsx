@@ -3,7 +3,7 @@ import EditButton from "@/components/actions/EditButton";
 import { routes } from "@/routes/routes";
 import { deleteCategory } from "@/server/catgory/actions";
 import React from "react";
-interface Brands {
+interface Products {
   id: string;
   name: string;
   description: string | null;
@@ -11,7 +11,7 @@ interface Brands {
   updatedAt: Date;
 }
 const heads = ["No", "Name", "Description",""];
-export default function BrandsTable({ brands }: { brands: Brands[] }) {
+export default function ProductsTable({ products }: { products: Products[] }) {
   return (
     <div className=" mt-5">
       <table className=" table w-full border-spacing-2 border-collapse">
@@ -28,7 +28,7 @@ export default function BrandsTable({ brands }: { brands: Brands[] }) {
           </tr>
         </thead>
         <tbody>
-          {brands.map((cate, index: number) => (
+          {products.map((cate, index: number) => (
             <tr key={cate.id}>
               <td className=" p-4 border-b border-slate-200">{index + 1}</td>
               <td className=" p-4 border-b border-slate-200">{cate.name}</td>
