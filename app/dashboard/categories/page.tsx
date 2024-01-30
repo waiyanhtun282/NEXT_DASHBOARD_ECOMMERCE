@@ -4,6 +4,7 @@ import { routes } from "@/routes/routes";
 import React from "react";
 import CategoriesTable from "./CategoriesTable";
 import { prisma } from "@/lib/prisma";
+import Image from "next/image";
 
 export default async function CategoriesPage() {
   const categories = await prisma.category.findMany();
@@ -13,7 +14,16 @@ export default async function CategoriesPage() {
         <h1 className=" font-medium text-lg">Categories</h1>
         <CreateButton name="Create Category" link={routes.categories.create} />
       </div>
-      <CategoriesTable categories={categories} />
+      {categories.length > 0 ? (
+        <CategoriesTable categories={categories} />
+      ) : (
+        <div className=" min-h-[50vh] grid place-items-center">
+          <div className=" text-center">
+            <Image src={"/empty.gif"} alt="empty" width={150} height={150} />
+            <p className=" mt-5 text-gray-500">Empty data !</p>
+          </div>
+        </div>
+      )}
       <Popup
         title="Category create is successful !"
         description=""

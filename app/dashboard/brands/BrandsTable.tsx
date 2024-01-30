@@ -1,7 +1,7 @@
 import DeleteButton from "@/components/actions/DeleteButton";
 import EditButton from "@/components/actions/EditButton";
 import { routes } from "@/routes/routes";
-import { deleteCategory } from "@/server/catgory/actions";
+import { deleteBrand } from "@/server/brand/action";
 import React from "react";
 interface Brands {
   id: string;
@@ -10,7 +10,7 @@ interface Brands {
   createdAt: Date;
   updatedAt: Date;
 }
-const heads = ["No", "Name", "Description",""];
+const heads = ["No", "Name", "Description", ""];
 export default function BrandsTable({ brands }: { brands: Brands[] }) {
   return (
     <div className=" mt-5">
@@ -28,19 +28,17 @@ export default function BrandsTable({ brands }: { brands: Brands[] }) {
           </tr>
         </thead>
         <tbody>
-          {brands.map((cate, index: number) => (
-            <tr key={cate.id}>
+          {brands.map((brand, index: number) => (
+            <tr key={brand.id}>
               <td className=" p-4 border-b border-slate-200">{index + 1}</td>
-              <td className=" p-4 border-b border-slate-200">{cate.name}</td>
+              <td className=" p-4 border-b border-slate-200">{brand.name}</td>
               <td className=" p-4 border-b border-slate-200">
-                {cate.description}
+                {brand.description}
               </td>
-              <td>
+              <td className=" p-4 border-b border-slate-200">
                 <div className=" flex items-center gap-3">
-                  <DeleteButton action={deleteCategory.bind(null, cate.id)} />
-                  <EditButton
-                    link={`${routes.brands.edit}?id=${cate.id}`}
-                  />
+                  <DeleteButton action={deleteBrand.bind(null, brand.id)} />
+                  <EditButton link={`${routes.brands.edit}?id=${brand.id}`} />
                 </div>
               </td>
             </tr>

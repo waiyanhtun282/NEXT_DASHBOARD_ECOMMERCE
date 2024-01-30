@@ -42,7 +42,7 @@ export default function CategoriesTable({
               <td className=" p-4 border-b border-slate-200">
                 {cate.description}
               </td>
-              <td>
+              <td className=" p-4 border-b border-slate-200">
                 <div className=" flex items-center gap-3">
                   <DeleteButton action={deleteCategory.bind(null, cate.id)} />
                   <EditButton

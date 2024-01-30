@@ -2,20 +2,23 @@ import BackButton from "@/components/actions/BackButton";
 import SubmitButton from "@/components/actions/SubmitButton";
 import { prisma } from "@/lib/prisma";
 import { routes } from "@/routes/routes";
-import { editBrands } from "@/server/brands/action";
+import { editBrand } from "@/server/brand/action";
 
-export default async function BrandsEditPage({searchParams}:{
-  searchParams:{id:string}
+export default async function BrandsEditPage({
+  searchParams,
+}: {
+  searchParams: { id: string };
 }) {
   const brand = await prisma.brand.findUnique({
-    where:{id:searchParams.id}
-  })
+    where: { id: searchParams.id },
+  });
   // console.log(brand);
 
   return (
-   <div className=" bg-white rounded-md p-3 shadow min-h-[80vh]">
+    <div className=" bg-white rounded-md p-3 shadow min-h-[80vh]">
       <div className=" md:px-5">
-        <form action={editBrands.bind(null,searchParams.id)}
+        <form
+          action={editBrand.bind(null, searchParams.id)}
           className=" space-y-4"
         >
           <BackButton name="Brands" link={routes.brands.main} />

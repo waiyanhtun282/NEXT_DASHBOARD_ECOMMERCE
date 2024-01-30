@@ -1,16 +1,17 @@
 import DeleteButton from "@/components/actions/DeleteButton";
 import EditButton from "@/components/actions/EditButton";
 import { routes } from "@/routes/routes";
-import { deleteCategory } from "@/server/catgory/actions";
+import { deleteProduct } from "@/server/product/actions";
 import React from "react";
 interface Products {
   id: string;
   name: string;
   description: string | null;
+  price: number;
   createdAt: Date;
   updatedAt: Date;
 }
-const heads = ["No", "Name", "Description",""];
+const heads = ["No", "Name", "Description", "Price", ""];
 export default function ProductsTable({ products }: { products: Products[] }) {
   return (
     <div className=" mt-5">
@@ -28,18 +29,21 @@ export default function ProductsTable({ products }: { products: Products[] }) {
           </tr>
         </thead>
         <tbody>
-          {products.map((cate, index: number) => (
-            <tr key={cate.id}>
+          {products.map((product, index: number) => (
+            <tr key={product.id}>
               <td className=" p-4 border-b border-slate-200">{index + 1}</td>
-              <td className=" p-4 border-b border-slate-200">{cate.name}</td>
+              <td className=" p-4 border-b border-slate-200">{product.name}</td>
               <td className=" p-4 border-b border-slate-200">
-                {cate.description}
+                {product.description}
               </td>
-              <td>
+              <td className=" p-4 border-b border-slate-200">
+                {product.price}
+              </td>
+              <td className=" p-4 border-b border-slate-200">
                 <div className=" flex items-center gap-3">
-                  <DeleteButton action={deleteCategory.bind(null, cate.id)} />
+                  <DeleteButton action={deleteProduct.bind(null, product.id)} />
                   <EditButton
-                    link={`${routes.brands.edit}?id=${cate.id}`}
+                    link={`${routes.products.edit}?id=${product.id}`}
                   />
                 </div>
               </td>
