@@ -15,6 +15,11 @@ export const routes = {
     create: "/dashboard/brands/create",
     edit: "/dashboard/brands/edit",
   },
+  discounts: {
+    main: "/dashboard/discounts",
+    create: "/dashboard/discounts/create",
+    edit: "/dashboard/discounts/edit",
+  },
   extras: {
     main: "/dashboard/extras",
     create: "/dashboard/extras/create",

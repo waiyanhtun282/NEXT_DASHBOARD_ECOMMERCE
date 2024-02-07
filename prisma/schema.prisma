@@ -13,19 +13,21 @@ datasource db {
 // schema.prisma
 
 model Product {
-  id          String    @id @default(cuid())
-  name        String
-  price       Int
-  description String
-  image       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt()
-  categoryId  String?
-  brandId     String?
-  brand       Brand?    @relation(fields: [brandId], references: [id])
-  category    Category? @relation(fields: [categoryId], references: [id])
+  id              String    @id @default(cuid())
+  name            String
+  price           Int
+  description     String
+  image           String?
+  categoryId      String?
+  brandId         String?
+  discountId      String?
+  discount        Discount? @relation(fields: [discountId], references: [id])
+  brand           Brand?    @relation(fields: [brandId], references: [id])
+  category        Category? @relation(fields: [categoryId], references: [id])
   related         Product[] @relation("RelatedProducts")
   relatedProducts Product[] @relation("RelatedProducts")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt()
 }
 
 model Brand {
@@ -45,4 +47,18 @@ model Category {
   products    Product[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+model Discount {
+  id           String    @id @default(cuid())
+  name         String
+  discountType String
+  value        String
+  description  String?
+  image        String? // Add a field for storing the image URL or path
+  startDate    DateTime? // Add start date field
+  endDate      DateTime? // Add end date field
+  products     Product[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }

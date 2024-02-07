@@ -12,6 +12,7 @@ const schema = zod.object({
   description: zod.string(),
   brandId: zod.string(),
   categoryId: zod.string(),
+  discountId: zod.string().nullable(),
 });
 
 export async function createProduct(formData: FormData) {
@@ -22,6 +23,7 @@ export async function createProduct(formData: FormData) {
       description: formData.get("description") || "",
       brandId: formData.get("brandId"),
       categoryId: formData.get("categoryId"),
+      discountId: formData.get("discountId") || null,
     }),
   });
 
@@ -38,6 +40,7 @@ export async function editProduct(id: string, formData: FormData) {
       description: formData.get("description") || "",
       brandId: formData.get("brandId"),
       categoryId: formData.get("categoryId"),
+      discountId: formData.get("discountId") || null,
     }),
   });
 

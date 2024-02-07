@@ -15,6 +15,7 @@ export default async function EditProduct({
   });
   const brands = await prisma.brand.findMany();
   const categories = await prisma.category.findMany();
+  const discounts = await prisma.discount.findMany();
   return (
     <div className=" bg-white rounded-md p-3 shadow min-h-[80vh]">
       <div className=" md:px-5">
@@ -100,6 +101,24 @@ export default async function EditProduct({
                 cols={30}
                 rows={3}
               ></textarea>
+            </div>
+            <div className="">
+              <label htmlFor="category" className=" block mb-1 text-gray-500">
+                Discount
+              </label>
+              <select
+                name="discountId"
+                id="discount"
+                className="p-3 rounded-md border focus:outline-none w-full"
+                defaultValue={product?.discountId as any}
+              >
+                <option value="">None</option>
+                {discounts.map((discount, index) => (
+                  <option value={discount.id} key={index}>
+                    {discount.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <SubmitButton name="Update" className=" w-[100px]" />
